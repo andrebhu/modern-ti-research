@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flask SSTI Testing</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    </head>
+    <body>
+        <h1>Flask SSTI Testing</h1>
+        
+        <form method="POST">
+            <input type="text" name="input">
+            <input type="submit" value="Submit">
+        </form>
+        
+        {% if data %}
+        <h2>Raw Input:</h2>
+        <p>{{ data["p1"] }}</p>
+
+        <h2><a href="https://flask.palletsprojects.com/en/2.2.x/api/?highlight=render_template_string#flask.render_template_string">render_template_string:</a></h2>
+        <p>{{ data["p2"] }}</p>
+
+        <h2><a href=https://jinja.palletsprojects.com/en/3.1.x/templates/#working-with-automatic-escaping">Jinja Safe Filter</a></h2>
+        <p>{{ data["p1"] | safe }}</p>
+        
+
+        <h2>render_template_string with Safe Filter:</h2>
+        <p>{{ data["p2"] | safe }}</p>
+        {% endif %}
+    </body>
+</html>
