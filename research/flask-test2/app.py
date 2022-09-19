@@ -4,10 +4,12 @@ from flask import Flask, render_template, request, render_template_string
 
 app = Flask(__name__)
 
+name = "Andre"
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        data = request.form["input"]
+        data = render_template_string(request.form["input"])
         return render_template("index.html", data=data)
     return render_template("index.html")
 

@@ -14,6 +14,8 @@
 - Jinja2
 
 
+- https://www.synacktiv.com/ressources/modern_php_security_sec4dev.pdf
+
 
 ### introduction
 - introduce template injections, small differences between server-side and client-side injections
