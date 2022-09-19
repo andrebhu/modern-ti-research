@@ -1,3 +1,3 @@
 [submodule "vuejs-serverside-template-xss"]
-	path = vuejs-serverside-template-xss
+	path = research/vuejs-serverside-template-xss
 	url = git@github.com:dotboris/vuejs-serverside-template-xss.git
