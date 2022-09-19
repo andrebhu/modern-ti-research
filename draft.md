@@ -100,9 +100,13 @@ We can create an `index.html` template in the `/templates` directory as so:
 
 You can see the special Jinja2 if statement used with the curly brackets in `index.html`. As the Flask application renders the template, it checks whether the server returned a `data` variable which you can see passed in `app.py`. If so, it will then be rendered onto the page.
 
-One vulnerable part of the code is the use of the [`render_template_string()`](https://flask.palletsprojects.com/en/2.2.x/templating/) when parsing the user input. This function essentially renders any Jinja2 syntax (such as the `{{7*7}}` payload) and returns it as a string. Do note that in this scenario, it does not cause XSS as the code is run in the backend.
+One vulnerable part of the code is the use of the [`render_template_string()`](https://flask.palletsprojects.com/en/2.2.x/templating/) in `app.py`. This function essentially renders any Jinja2 syntax (such as the `{{7*7}}` payload) and returns it as a string. Do note that in this scenario, it does not cause XSS as the code is run in the backend.
 
 Additionally, the `|` character and `safe` as seen in `index.html` is what is allowing for XSS. Though passing a simple XSS payload such as `<script>alert(1)</script>` does not contain any Jinja2 syntax, the direct string passed back to the template is being run through the [safe filter](https://jinja.palletsprojects.com/en/3.1.x/templates/#working-with-automatic-escaping). This automatically escapes any string and will render on the page.
+
+An example of the different combinations is shown here:
+
+![](/images/flask-example.png)
 
 The following will show certain techniques found in Flask, but may also be applicable to other frameworks.
 
