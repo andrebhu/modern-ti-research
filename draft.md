@@ -25,9 +25,9 @@ Templates are often used by developers and can be seen in many modern-day dynami
 Because of the such widespread usage, the initial discovery of template injections introduced a whole new class of vulnerabilities still being researched today.
 
 ## What are server-side template injections? (SSTIs)
-Server-side template injections, or SSTIs, were first introduced by [James Kettle](https://portswigger.net/research/server-side-template-injection) in 2015.
+Server-side template injections, or SSTIs, were first introduced by [James Kettle](https://portswigger.net/research/server-side-template-injection) in 2015 and set a framework to a lot of studies and exploitation techniques till today.
 
-The main idea behind the attack is for a malicious user to abuse the "retrieve data from the server" mechanism, hence the "server-side" part to the name. 
+The main idea behind the attack is for a malicious user to abuse the "retrieve data from the server" mechanism, hence the "server-side" part to the name. Templating engines would render this user-input and may expose code execution to which attackers can run arbitrary commands.
 
 Allowing user-input typically is a bad idea, but in some places it is necessary such as with forms and chat messages. The issue arises when a server renders and executes the user-input, typically triggered with a special wrapper.
 
@@ -168,6 +168,7 @@ app.config['SECRET_KEY'] = os.random(16).hex()
 
 This configuration variable declared in Flask can be called with `config`. Within the Flask context, sending the payload `{{ config }}` will return all the app's variables, including that secret key. The secret key can allow people to sign their own cookies to steal user sessions.
 
+There are other variables that are also accessible by Jinja2's templating engine, but 
 
 ## Remediations
 Besides the two explicit vulnerabilities declared in the dummy app above, often in the real world there's a lot more code. This may make it a bit difficult to perform a full security audit to catch mistakes seen above. It is important though to keep in mind of techniques for preventing SSTIs.
@@ -188,7 +189,9 @@ Even if an attacker obtains code execution, they would be limited to the permiss
 User-input should always be sanitized as it is the most common attack vector. Anywhere from input forms, query parameters, and chat features. Special characters as seen with above `{`, `$`, and `@` are examples of things to look out for.
 
 ## Conclusion
-In conclusion, server-side template injections are a still relatively new injection type that was wide applications. The multitude of web frameworks that utilize their own custom templates and templating engines change frequently and come with their own set of unique exploits.
+In conclusion, server-side template injections are a still relatively new injection type that was wide applications. The multitude of web frameworks that utilize their own custom templates and templating engines change frequently and come with their own set of unique exploits. It is best to beware and be on the lookout on SSTIs.
+
+
 
 ## References
 - https://portswigger.net/research/server-side-template-injection
