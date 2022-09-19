@@ -104,7 +104,6 @@ You can see the special Jinja2 syntax used in the if statement. As the Flask app
 
 
 
-
 ### Object Tree Traversal
 By utilizing Python builtins, we can also traverse object trees to access different types of objects. 
 
