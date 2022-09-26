@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flask SSTI Testing</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    </head>
+    <body>
+        <h1>Flask Session Testing</h1>
+
+        {% if session_cookie %}
+        <h2>Session Cookie:</h2>
+        <p>{{ session_cookie }}</p>
+        <h2>Cookies Decoded:</h2>
+        <p>{{ decoded_session_cookie }}</p>
+        {% endif %}
+
+    </body>
+</html>
