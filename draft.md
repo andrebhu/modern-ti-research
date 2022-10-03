@@ -252,7 +252,9 @@ Decoding the sections provided results in:
 ```
 An attacker can determine the session values used in the application and control the value. The extra bytes after the JSON is the signature encoded with the time and secret key.
 
-Using both the secret key from the injection and the session structure, an attacker can then create a dummy Flask server, modify the values, and send it back for the server to process. Attackers may also attempt to bruteforce the secret key. Some open-source tools can even be found on Github which can help with this process:
+Using both the secret key from the injection and the session structure, an attacker can then create a dummy Flask server, modify the session-token value, and send the forged token back to the original server.
+
+Attackers may also attempt to bruteforce the secret key. Some open-source tools can even be found on Github which can help with this process:
 
 - https://github.com/Paradoxis/Flask-Unsign
 - https://github.com/Tagvi/ripsession
